@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Django Project</title>
+</head>
+<body>
+<h1>Uber ride predictor</h1>
+<hr/>
+<form action="{% url 'test' %}" method="post">
+   {% csrf_token %}
+    Enter price per week
+    <input type="number" name="ppw" placeholder="Enter price per week"/><br/><br/>
+    Enter population
+    <input type="number" name="pn" placeholder="Enter population"/><br/><br/>
+    Enter monthly income
+    <input type="number" name="mi" placeholder="Enter monthly income"/><br/><br/>
+    Enter average parking per week
+    <input type="number" name="appw" placeholder="Enter average parking per week"/><br/><br/>
+    <input type="submit" value="Predict"/>
+    <br/><br/>
+    <hr/>
+    <table border="1">
+         <tr>
+          <th> Price per week </th>
+          <th> Population </th>
+          <th> Monthly income </th>
+          <th> Average parking per week </th>
+          <th> No of rides </th>
+         </tr>
+         {% for r in res %}
+          <tr>
+           <td> {{r.ppw}} </td>        #2d array format
+           <td> {{r.pn}} </td>
+           <td> {{r.mi}} </td>
+           <td> {{r.appm}} </td>
+           <td> {{r.result}} </td>
+          </tr>
+
+         {% endfor %}
+    </table>
+</form>
+</body>
+</html>
